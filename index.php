@@ -7,6 +7,7 @@ function validImage($file)
     return !is_dir(__DIR__.$imgPath.$file);
 }
 $files = scandir(__DIR__.$imgPath);
+shuffle($files);
 $imgs = [];
 foreach($files as $file) if($file != '.' && $file != '..') array_push($imgs, $file);
 ?>
@@ -19,9 +20,9 @@ foreach($files as $file) if($file != '.' && $file != '..') array_push($imgs, $fi
         <script src="app.js"></script>
 	</head>
 	<body>
-		<div class="preload">
+		<div class="gallery">
 			<?php
-			foreach($imgs as $img) echo "<img src='".$imgPath.$img."'/>";
+			foreach($imgs as $i => $img) echo "<div data-id='".$i."' style='z-index: ".$i."' class='img'><img src='".$imgPath.$img."'/></div>";
 			?>
 		</div>
 	</body>
